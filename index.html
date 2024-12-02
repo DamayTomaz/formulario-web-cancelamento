@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>SantaCasaProg</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="./img/LogoSantaCasaMaceio-site-branco-removebg-preview.png"
+        alt="logo-Santa"
+        id="logo-Santa"
+      />
+      <h1>PEDIDO DE CANCELAMENTO</h1>
+      <div id="locaweb">
+        <a
+          href="https://webmail-seguro.com.br"
+          target="_blank"
+          class="web-link"
+        >
+          <img src="./img/locaweb.png" alt="Logo" class="logo" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <form class="divergenciaForm" id="divergenciaForm">
+        <h2>PREENCHA OS CAMPOS ABAIXO</h2>
+
+        <label for="nomePaciente"></label>
+        <input
+          type="text"
+          placeholder="Insira o Nome do Paciente"
+          id="nomePaciente"
+          required
+        /><br />
+
+        <label for="codigoAtendimento"></label>
+        <input
+          type="number"
+          placeholder="Código de Atendimento:"
+          id="codigoAtendimento"
+          required
+        /><br />
+
+        <label for="valorFaturado"></label>
+        <input
+          type="number"
+          placeholder="Valor Faturado:"
+          id="valorFaturado"
+          step="0.01"
+        /><br />
+
+        <label for="valorPago"></label>
+        <input
+          type="number"
+          placeholder="Valor Pago:"
+          id="valorPago"
+          required
+          step="0.01"
+        /><br />
+
+        <label for="codigoCV"></label>
+        <input
+          type="number"
+          placeholder="CV ou Cod de autorização:"
+          id="codigoCV"
+          required
+        /><br />
+
+        <label for="codigoCAP"></label>
+        <input
+          type="number"
+          placeholder="Contas a Pagar"
+          id="codigoCAP"
+          required
+        /><br />
+
+        <label for="dataPagamento"></label>
+        <input type="date" id="dataPagamento" required max="3000-12-31" /><br />
+        <div id="eraser">
+          <button type="reset" id="cleaner-fild">
+            <img src="./img/eraser.png" alt="botão limpa campos" />
+          </button>
+        </div>
+        <div class="resultado">
+          <button class="button" type="button" onclick="criarMensagem()">
+            CRIAR E-MAIL
+          </button>
+          <button
+            class="button"
+            type="button"
+            id="btnCopiarTexto"
+            onclick="copiarTexto()"
+          >
+            COPIAR TEXTO
+          </button>
+        </div>
+      </form>
+
+      <div id="resultado">
+        <pre></pre>
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
