@@ -34,8 +34,8 @@ header h1 {
   word-wrap: normal;
 }
 #logo-Santa {
-  max-width: 30%;
-  min-height: 1.5em;
+ width: 20%;
+ height: 20%;
 }
 #locaweb {
   width: 1em;
@@ -186,7 +186,8 @@ button#cleaner-fild:hover {
 @media (min-width: 577px) and (max-width: 768px) {
   /* Tablets */
   #logo-Santa {
-    height: 2em;
+    height:10%;
+    width: 10%;
   }
   img.logo {
     width: 3em;
@@ -221,8 +222,8 @@ button#cleaner-fild:hover {
 @media (min-width: 769px) and (max-width: 102px) {
   /* Desktop pequeno */
   #logo-Santa {
-    max-width: 50%;
-    height: 3em;
+    height:10%;
+    width: 10%;
   }
   img.logo {
     width: 3em;
@@ -260,6 +261,10 @@ button#cleaner-fild:hover {
 }
 @media (min-width: 1024px) and (max-width: 1200px) {
   /* Desktop médio */
+  #logo-Santa {
+    height:10%;
+    width: 10%;
+  }
   header h1 {
     position: relative;
     right: 1em;
@@ -304,6 +309,10 @@ button#cleaner-fild:hover {
 }
 @media (min-width: 1201px) {
   /* Desktop grande */
+  #logo-Santa {
+    height:10%;
+    width: 10%;
+  }
   header h1 {
     position: relative;
     right: 3em;
