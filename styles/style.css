@@ -180,6 +180,8 @@ button#cleaner-fild {
   border-radius: 100%;
   color: rgb(63, 79, 153);
   cursor: pointer;
+  min-width: 2em;
+  min-height: 2em;
 }
 button#cleaner-fild:hover {
   background-color: rgb(192, 176, 102);
@@ -261,7 +263,6 @@ button#cleaner-fild:hover {
     font-weight: 800;
     margin-top: 0.5em;
   }
- 
 }
 @media (min-width: 1024px) and (max-width: 1200px) {
   /* Desktop médio */
