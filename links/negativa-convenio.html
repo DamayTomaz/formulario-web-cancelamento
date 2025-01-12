@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>FORMULARIOS COBRANÇA</title>
+  </head>
+  <body>
+    <header>
+      <img src="../img/logo.jpg" alt="logo-Santa" id="logo-Santa" />
+      <h1>NEGATIVA CONVÊNIO</h1>
+      <div id="locaweb">
+        <a
+          href="https://webmail-seguro.com.br"
+          target="_blank"
+          class="web-link"
+        >
+          <img src="../img/locaweb.png" alt="Logo" class="logo" />
+        </a>
+      </div>
+    </header>
+    <aside><a id="link" href="/index.html">CANCELAMENTO PARCIAL</a></aside>
+    <main id="mainNegative">
+      <form class="divergenciaForm" id="">
+        <h2>PREENCHA OS CAMPOS ABAIXO</h2>
+
+        <label for="nomeRemetente"></label>
+        <input
+          type="text"
+          placeholder="Insira o seu nome"
+          id="nomeRemetente"
+          required
+        /><br />
+
+        <label for="nomePaciente2"></label>
+        <input
+          type="text"
+          placeholder="Nome do Paciente:"
+          id="nomePaciente2"
+          required
+        /><br />
+
+        <label for="valorFaturado2"></label>
+        <input
+          type="number"
+          placeholder="Valor Faturado:"
+          id="valorFaturado2"
+          step="0.01"
+        /><br />
+
+        <label for="nomeConvenio"></label>
+        <input
+          type="text"
+          placeholder="Convenio:"
+          id="nomeConvenio"
+          required
+        /><br />
+        <label for="motivo"></label>
+        <input
+          type="text"
+          placeholder="Motivo:"
+          id="motivo"
+          required
+        /><br />
+
+        <label for="dataInicio">Data de Internação:</label>
+        <input
+          type="date"
+          required max="3000-12-31"
+          id="dataInicio"
+          required
+        /><br />
+
+        <label for="dataFinal">Data da Alta:</label>
+        <input
+          type="date"
+          required max="3000-12-31"
+
+          id="dataFinal"
+          required
+        /><br />
+
+            
+          </button>
+          <div id="eraser">
+            <button type="reset" id="cleaner-fild">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+            
+              >
+                <path
+                  d="M12.48 3 7.73 7.75 3 12.59a2 2 0 0 0 0 2.82l4.3 4.3A1 1 0 0 0 8 20h12v-2h-7l7.22-7.22a2 2 0 0 0 0-2.83L15.31 3a2 2 0 0 0-2.83 0zM8.41 18l-4-4 4.75-4.84.74-.75 4.95 4.95-4.56 4.56-.07.08z"
+                ></path>
+              </svg>
+            </button>
+        </div>
+       
+          <button class="button" type="button" onclick="criarMensagemNegativa()">
+            CRIAR MENSAGEM
+          </button>
+
+        </div>
+      </form>
+
+      <div class="resultado" id="mensagemNegativa">
+        <pre></pre>
+        <button
+          class="buttonCopy"
+          type="button"
+          id="btnCopiarTexto"
+          onclick="copiarTextoConvenio()"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M20 11V5c0-1.103-.897-2-2-2h-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H4c-1.103 0-2 .897-2 2v13c0 1.103.897 2 2 2h7c0 1.103.897 2 2 2h7c1.103 0 2-.897 2-2v-7c0-1.103-.897-2-2-2zm-9 2v5H4V5h3v2h8V5h3v6h-5c-1.103 0-2 .897-2 2zm2 7v-7h7l.001 7H13z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      
+    </main>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
