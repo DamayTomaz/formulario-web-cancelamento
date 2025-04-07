@@ -192,3 +192,72 @@ function copiarTextoConvenio() {
     );
   }
 }
+
+//Criar mensagem do débito do cliente
+
+// Função para criar a mensagem de estorno
+// Função para criar a mensagem de cobrança negativa
+function criarMensagemNegativa() {
+  // Captura os valores inseridos no formulário
+  const nomeRemetente = document.getElementById('nomeRemetente2').value;
+  const nomePaciente = document.getElementById('nomePaciente3').value;
+  const valorFaturado = document.getElementById('valorFaturado3').value;
+  const valorPago = document.getElementById('valorPago2').value;
+  const motivoDebito = document.getElementById('motivoDebito').value;
+  const nomeConvenio = document.getElementById('nomeConvenio').value;
+  const dataInicio = document.getElementById('dataInicio').value;
+  const dataFinal = document.getElementById('dataFinal').value;
+
+  // Verifica se todos os campos foram preenchidos
+  if (!nomeRemetente || !nomePaciente || !valorFaturado || !valorPago || !motivoDebito || !nomeConvenio || !dataInicio || !dataFinal) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
+
+  // Calcula a diferença entre o valor faturado e o valor pago
+  const saldoDevedor = (parseFloat(valorFaturado) - parseFloat(valorPago)).toFixed(2);
+
+  // Gera a mensagem de cobrança negativa
+  const mensagem = `
+    Prezado(a) ${nomeRemetente},
+
+    Informamos que o paciente ${nomePaciente}, que estava internado de ${dataInicio} a ${dataFinal}, tem um débito referente ao valor de R$ ${valorFaturado}, mas foi pago apenas R$ ${valorPago}.
+    O saldo devedor é de R$ ${saldoDevedor}.
+    
+    Motivo do débito: ${motivoDebito}.
+    
+    Convênio: ${nomeConvenio}.
+    
+    Solicitamos que a diferença seja quitada o mais breve possível.
+
+    Atenciosamente,
+    Departamento de Cobrança
+  `;
+
+  // Exibe a mensagem na página
+  const mensagemDiv = document.getElementById('mensagemNegativa');
+  mensagemDiv.querySelector('pre').textContent = mensagem;
+}
+
+// Função para copiar a mensagem gerada para a área de transferência
+function copiarTextoConvenio() {
+  const mensagemText = document.querySelector('#mensagemNegativa pre').textContent;
+  
+  if (mensagemText) {
+    // Cria um elemento temporário para copiar o texto
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = mensagemText;
+    document.body.appendChild(tempTextArea);
+    
+    // Seleciona e copia o texto
+    tempTextArea.select();
+    document.execCommand('copy');
+    
+    // Remove o elemento temporário
+    document.body.removeChild(tempTextArea);
+    
+    alert('Texto copiado com sucesso!');
+  } else {
+    alert('Nenhuma mensagem gerada para copiar!');
+  }
+}
