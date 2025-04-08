@@ -3,6 +3,7 @@ function formatarData(data) {
   return `${dia}/${mes}/${ano}`;
 }
 // Função para criar a mensagem de estorno
+// Função para criar a mensagem de estorno
 function criarMensagem() {
   // Captura os valores dos campos do formulário
   const nomePaciente = document.getElementById("nomePaciente").value;
@@ -16,17 +17,24 @@ function criarMensagem() {
 
   // Calcula o valor da devolução
   const valorDevolucao = valorPago - valorFaturado;
+
+  // Função para formatar o valor com vírgula
+  function formatarValor(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   // Formata as datas para o formato DD/MM/AAAA
   const dataPagamentoFormatada = formatarData(dataPagamento);
+
   // Cria a mensagem formatada para o estorno
   const mensagem = `
     Gostaria de solicitar o estorno referente ao atendimento:
 
     - Nome do Paciente: ${nomePaciente}
     - Código de Atendimento: ${codigoAtendimento}
-    - Valor Faturado: R$ ${valorFaturado.toFixed(2)}
-    - Valor Pago: R$ ${valorPago.toFixed(2)}
-    - Valor da devolução: R$ ${valorDevolucao.toFixed(2)}
+    - Valor Faturado: R$ ${formatarValor(valorFaturado)}
+    - Valor Pago: R$ ${formatarValor(valorPago)}
+    - Valor da devolução: R$ ${formatarValor(valorDevolucao)}
     - CV ou Código de Autorização: ${codigoCV}
     - Excluir o contas a pagar: ${codigoCAP}
     - Data de Pagamento: ${dataPagamentoFormatada}
@@ -53,21 +61,24 @@ function criarMensagemCliente() {
   // Calcula o valor da devolução
   const valorDevolucao = valorPago - valorFaturado;
 
+  // Função para formatar o valor com vírgula
+  function formatarValor(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   // Cria a mensagem formatada para o cliente
   const mensagemClient = `
     Olá, ${nomePaciente}!
 
     Gostaria de informar que, após a análise do seu pagamento,
      verificamos que o valor pago foi superior ao valor da conta.
-      Então, vamos realizar um estorno no valor de R$ ${valorDevolucao.toFixed(
-        2
-      )}.
+      Então, vamos realizar um estorno no valor de R$ ${formatarValor(valorDevolucao)}.
 
     Aqui estão os detalhes:
 
-    Valor Pago: R$ ${valorPago.toFixed(2)}
-    Valor da Conta: R$ ${valorFaturado.toFixed(2)}
-    Valor a ser Estornado: R$ ${valorDevolucao.toFixed(2)}
+    Valor Pago: R$ ${formatarValor(valorPago)}
+    Valor da Conta: R$ ${formatarValor(valorFaturado)}
+    Valor a ser Estornado: R$ ${formatarValor(valorDevolucao)}
     O estorno será feito em breve e, dependendo do banco,
      pode levar alguns dias úteis para aparecer no seu extrato.
     Qualquer dúvida, estamos à disposição! 
@@ -80,7 +91,6 @@ function criarMensagemCliente() {
   resultadoDivClient.style.display = "block";
   resultadoDivClient.querySelector("pre").innerText = mensagemClient;
 }
-
 // Função para copiar a mensagem para a área de transferência
 function copiarTexto() {
   const texto = document
@@ -214,25 +224,36 @@ function criarMensagemNegativa() {
     return;
   }
 
+  // Função para formatar a data no formato DD/MM/AAAA
+  function formatarData(data) {
+    const partesData = data.split('-');
+    return `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
+  }
+
+  // Formata as datas
+  const dataInicioFormatada = formatarData(dataInicio);
+  const dataFinalFormatada = formatarData(dataFinal);
+
   // Calcula a diferença entre o valor faturado e o valor pago
   const saldoDevedor = (parseFloat(valorFaturado) - parseFloat(valorPago)).toFixed(2);
 
+  // Formata o saldo devedor para o padrão brasileiro com vírgula
+  const saldoDevedorFormatado = parseFloat(saldoDevedor).toLocaleString('pt-BR', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
   // Gera a mensagem de cobrança negativa
   const mensagem = `
-    Prezado(a) ${nomeRemetente},
+  Olá, sou ${nomeRemetente}, do setor de cobranças da Santa Casa.
 
-    Informamos que o paciente ${nomePaciente}, que estava internado de ${dataInicio} a ${dataFinal}, tem um débito referente ao valor de R$ ${valorFaturado}, mas foi pago apenas R$ ${valorPago}.
-    O saldo devedor é de R$ ${saldoDevedor}.
-    
-    Motivo do débito: ${motivoDebito}.
-    
-    Convênio: ${nomeConvenio}.
-    
-    Solicitamos que a diferença seja quitada o mais breve possível.
+  Estamos entrando em contato para informar que o paciente ${nomePaciente}, que esteve internado de ${dataInicioFormatada} a ${dataFinalFormatada}, possui um saldo devedor no montante de R$ ${saldoDevedorFormatado}. 
 
-    Atenciosamente,
-    Departamento de Cobrança
-  `;
+  Solicitamos que o referido saldo seja quitado o mais breve possível.
+
+  Agradecemos sua atenção e colaboração.
+
+  Atenciosamente,  
+  ${nomeRemetente}  
+  Setor de Cobranças - Santa Casa
+`;
 
   // Exibe a mensagem na página
   const mensagemDiv = document.getElementById('mensagemNegativa');

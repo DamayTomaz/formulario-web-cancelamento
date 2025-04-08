@@ -400,6 +400,9 @@ button#cleaner-fild:hover {
     min-width: 50%;
     padding: 1em;
   }
+  form{
+    padding: 4.5em;
+  }
   .resultado {
     min-height: 100%;
     background-size: 50%;
@@ -459,6 +462,9 @@ button#cleaner-fild:hover {
   img.logo {
     width: 4em;
     height: 4em;
+  }
+  form{
+    padding: 4.5em;
   }
   #mainNegative {
     display: grid;
