@@ -62,6 +62,7 @@ aside {
   text-align: center;
 }
 #link {
+  margin: 2px;
   padding: 4px;
   font-size: 0.6em;
   font-weight: 600;
@@ -77,8 +78,8 @@ aside {
 }
 #link:hover{
   background-color: #3f5798;
-  transition: all 1s;
-  font-size: 0.7em;
+  transition: all 0.1s;
+
 }
 main {
   display: flex;
@@ -86,8 +87,7 @@ main {
   width: 95%;
   margin: auto;
   padding: 5%;
-  background: url("../img/background mobile.jpg");
-  background-position: right;
+
 }
 form {
   max-height: 85%;
@@ -127,6 +127,15 @@ input[type="date"] {
 input:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(63, 79, 153, 0.8); /* Realça o campo ao focar */
+}
+select#motivoDebito{
+  border-radius: 0.4em;
+  max-width: 80%;
+  border: none;
+  margin: 1%;
+  padding: 2%;
+  color: rgb(63, 79, 153);
+  transition: all 0.2s ease-in-out;
 }
 .creatfild {
   display: flex;
@@ -489,7 +498,7 @@ button#cleaner-fild:hover {
   }
   .resultado pre {
     background-color: #1e3a8a;
-    font-size: 1em;
+    font-size: 0.9em;
     display: block;
     margin-top: 5em;
   }
@@ -508,7 +517,7 @@ button#cleaner-fild:hover {
   }
   #client pre {
     background-color: #1e3a8a;
-    font-size: 1em;
+    font-size: 0.9em;
     display: block;
     margin-top: 4em;
   }
@@ -535,9 +544,9 @@ button#cleaner-fild:hover {
   align-content: center;
 }
 #link:hover{
-  background-color: #3f5798;
+  background-color: #ffffff;
   transition: all 1s;
-  font-size: 1.1em;
+  color: #1e3a8a;
 }
 #mensgemNegativa pre {
   background-color: #1e3a8a;

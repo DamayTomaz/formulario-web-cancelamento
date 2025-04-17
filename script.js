@@ -138,7 +138,7 @@ function copiarTextoClient() {
 }
 
 // Função para criar a mensagem de estorno
-function criarMensagemNegativa() {
+function criarMensagemNegativaConvenio() {
   // Captura os valores dos campos do formulário
   const nomeRemetente = document.getElementById("nomeRemetente").value;
   const nomePaciente2 = document.getElementById("nomePaciente2").value;
@@ -214,12 +214,11 @@ function criarMensagemNegativa() {
   const valorFaturado = document.getElementById('valorFaturado3').value;
   const valorPago = document.getElementById('valorPago2').value;
   const motivoDebito = document.getElementById('motivoDebito').value;
-  const nomeConvenio = document.getElementById('nomeConvenio').value;
   const dataInicio = document.getElementById('dataInicio').value;
   const dataFinal = document.getElementById('dataFinal').value;
 
   // Verifica se todos os campos foram preenchidos
-  if (!nomeRemetente || !nomePaciente || !valorFaturado || !valorPago || !motivoDebito || !nomeConvenio || !dataInicio || !dataFinal) {
+  if (!nomeRemetente || !nomePaciente || !valorFaturado || !valorPago || !motivoDebito || !dataInicio || !dataFinal) {
     alert('Por favor, preencha todos os campos.');
     return;
   }
@@ -245,6 +244,8 @@ function criarMensagemNegativa() {
   Olá, sou ${nomeRemetente}, do setor de cobranças da Santa Casa.
 
   Estamos entrando em contato para informar que o paciente ${nomePaciente}, que esteve internado de ${dataInicioFormatada} a ${dataFinalFormatada}, possui um saldo devedor no montante de R$ ${saldoDevedorFormatado}. 
+  
+  Motivo do Débito: ${motivoDebito}
 
   Solicitamos que o referido saldo seja quitado o mais breve possível.
 

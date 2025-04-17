@@ -70,26 +70,33 @@
         /><br />
 
         <label for="motivoDebito">Motivo do Débito:</label>
-        <input
-          type="text"
-          placeholder="Motivo do Débito"
-          id="motivoDebito"
-          required
-        /><br />
-
-        <label for="nomeConvenio">Nome do Convênio:</label>
-        <input
-          type="text"
-          placeholder="Nome do Convênio"
-          id="nomeConvenio"
-          required
-        /><br />
+        <select id="motivoDebito" required>
+          <option value="">Selecione um motivo</option>
+          <option value="Uso adicional de peças de patologia pelo médico">
+            Uso adicional de peças de patologia pelo médico
+          </option>
+          <option
+            value="Quantidade de diárias maior que o previsto no orçamento"
+          >
+            Quantidade de diárias maior que o previsto no orçamento
+          </option>
+          <option
+            value="Valor final da conta ficou maior que o orçamento (estimativa)"
+          >
+            Valor final da conta ficou maior que o orçamento (estimativa)
+          </option>
+          <option value="Utilização de material OPME não previsto no orçamento">
+            Utilização de material OPME não previsto no orçamento
+          </option>
+          <option value="Outro">Outro</option>
+          <option value="Outros">Outros</option></select
+        ><br />
 
         <label for="dataInicio">Data de Internação:</label>
-        <input type="date" id="dataInicio" required /><br />
+        <input type="date" id="dataInicio" required max="2030-12-31" /><br />
 
         <label for="dataFinal">Data da Alta:</label>
-        <input type="date" id="dataFinal" required /><br />
+        <input type="date" id="dataFinal" required max="2030-12-31" /><br />
 
         <div id="eraser">
           <button type="reset" id="cleaner-fild">
