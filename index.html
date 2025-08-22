@@ -3,41 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/forms.css" />
+    <link rel="stylesheet" href="./styles/base.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" 
       rel="stylesheet"
     />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
     <title>Formulário de Cancelamento</title>
   </head>
+
   <body>
     <header>
-      <img src="./img/logo.jpg" alt="logo-Santa" id="logo-Santa" />
-      <h1>CANCELAMENTO PARCIAL</h1>
-      <div id="locaweb">
-        <a
-          href="https://webmail-seguro.com.br"
-          target="_blank"
-          class="web-link"
-        >
-          <img src="./img/locaweb.png" alt="Logo" class="logo" />
-        </a>
+      <div class="overlay"></div>
+      <nav class="menu-navegacao">
+        <button id="btnBurguer" onclick="clickMenu()" aria-label="Abrir Menu">
+          <i class="bx bx-menu"></i>
+        </button>
+      </nav>
+      <img
+        src="https://santacasademaceio.com.br/wp-content/uploads/2025/05/SANTA-CASA-DE-MISERIC%C3%93RDIA-DE-MACEI%C3%93-HORIZINTAL.png"
+        alt=""
+      />
+      <button id="themeToggle">🌙</button>
+      <div id="sidebar" class="sidebar">
+        <ul>
+          <li><a href="./links/debito-cliente.html">Débito Cliente</a></li>
+          <li>
+            <a href="./links/negativa-convenio.html">Negativa Convênio</a>
+          </li>
+          <li><a href="https://webmail-seguro.com.br/v2/">E-mail</a></li>
+          <li><a href="http://scmweb09/AnexarGuia">Anexa guia</a></li>
+        </ul>
       </div>
     </header>
-    <aside>
-      <a id="link" href="./links/negativa-convenio.html"
-        >NEGATIVA DE CONVENIO</a
-      >
 
-      <a id="link" href="./links/debito-cliente.html">DEBITO CLIENTE</a>
-    </aside>
-    <main>
+    <main id="cancelamentoParcial">
       <form class="divergenciaForm" id="divergenciaForm">
-        <h2>PREENCHA OS CAMPOS ABAIXO</h2>
-
-        <label for="nomePaciente"></label>
+        <div id="tittle-form">
+          <h2>CANCELAMENTO PARCIAL</h2>
+        </div>
+        <label for="nomePaciente">Nome do paciente</label>
         <input
           type="text"
           placeholder="Insira o Nome do Paciente"
@@ -45,57 +57,51 @@
           required
         /><br />
 
-        <label for="codigoAtendimento"></label>
+        <label for="codigoAtendimento">Atendimeto</label>
         <input
-          type="number"
+          type="text"
           placeholder="Código de Atendimento:"
           id="codigoAtendimento"
           required
         /><br />
 
-        <label for="valorFaturado"></label>
+        <label for="valorFaturado">Valor Faturado</label>
         <input
-          type="number"
-          placeholder="Valor Faturado:"
+          type="text"
+          placeholder="Insira o Valor Faturado:"
           id="valorFaturado"
           step="0.01"
         /><br />
 
-        <label for="valorPago"></label>
+        <label for="valorPago">Valor Pago</label>
         <input
-          type="number"
-          placeholder="Valor Pago:"
+          type="text"
+          placeholder="Insira o Valor Pago:"
           id="valorPago"
           required
           step="0.01"
         /><br />
 
-        <label for="codigoCV"></label>
+        <label for="codigoCV">CV</label>
         <input
-          type="number"
+          type="text"
           placeholder="CV ou Cod de autorização:"
           id="codigoCV"
           required
         /><br />
 
-        <label for="codigoCAP"></label>
+        <label for="codigoCAP">Contas a Pagar</label>
         <input
-          type="number"
-          placeholder="Contas a Pagar"
+          type="text"
+          placeholder="Insira o Numero do Contas a Pagar"
           id="codigoCAP"
           required
         /><br />
 
-        <label for="dataPagamento"></label>
+        <label for="dataPagamento">Data do Pagamento</label>
         <input type="date" id="dataPagamento" required max="3000-12-31" /><br />
         <div id="eraser">
-          <button type="reset" id="cleaner-fild">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                d="M12.48 3 7.73 7.75 3 12.59a2 2 0 0 0 0 2.82l4.3 4.3A1 1 0 0 0 8 20h12v-2h-7l7.22-7.22a2 2 0 0 0 0-2.83L15.31 3a2 2 0 0 0-2.83 0zM8.41 18l-4-4 4.75-4.84.74-.75 4.95 4.95-4.56 4.56-.07.08z"
-              ></path>
-            </svg>
-          </button>
+          <button type="reset" id="cleaner-fild">🧹</button>
         </div>
         <div class="creatfild">
           <button class="button" type="button" onclick="criarMensagem()">
@@ -107,36 +113,25 @@
           </button>
         </div>
       </form>
-
-      <div class="resultado" id="emailMensagem">
-        <pre></pre>
-        <button
-          class="buttonCopy"
-          type="button"
-          id="btnCopiarTexto"
-          onclick="copiarTexto()"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-              d="M20 11V5c0-1.103-.897-2-2-2h-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H4c-1.103 0-2 .897-2 2v13c0 1.103.897 2 2 2h7c0 1.103.897 2 2 2h7c1.103 0 2-.897 2-2v-7c0-1.103-.897-2-2-2zm-9 2v5H4V5h3v2h8V5h3v6h-5c-1.103 0-2 .897-2 2zm2 7v-7h7l.001 7H13z"
-            ></path>
-          </svg>
-        </button>
-      </div>
-      <div class="resultado" id="client">
-        <pre></pre>
-        <button
-          class="buttonCopy"
-          type="button"
-          id="btnCopiarTexto"
-          onclick="copiarTextoClient()"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-              d="M20 11V5c0-1.103-.897-2-2-2h-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H4c-1.103 0-2 .897-2 2v13c0 1.103.897 2 2 2h7c0 1.103.897 2 2 2h7c1.103 0 2-.897 2-2v-7c0-1.103-.897-2-2-2zm-9 2v5H4V5h3v2h8V5h3v6h-5c-1.103 0-2 .897-2 2zm2 7v-7h7l.001 7H13z"
-            ></path>
-          </svg>
-        </button>
+      <div class="container-resultado">
+        <div class="resultado" id="emailMensagem">
+          <h3>Mensagem para o E-mail</h3>
+          <pre class="returnCancelamento"></pre>
+          <button
+            class="buttonCopy"
+            type="button"
+            id="btnCopiarTexto"
+            onclick="copiarTexto()">📝</button>
+        </div>
+        <div class="resultado" id="client">
+          <h3>Mensagem para o Cliente</h3>
+          <pre class="returnCancelamento"></pre>
+          <button
+            class="buttonCopy"
+            type="button"
+            id="btnCopiarTexto"
+            onclick="copiarTextoClient()">📝</button>
+        </div>
       </div>
     </main>
 

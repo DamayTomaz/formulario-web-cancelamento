@@ -3,38 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/forms.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
     <title>FORMULARIOS COBRANÇA</title>
   </head>
+
   <body>
     <header>
-      <img src="../img/logo.jpg" alt="logo-Santa" id="logo-Santa" />
-      <h1>INFORMATIVO DE DÉBITO</h1>
-      <div id="locaweb">
-        <a
-          href="https://webmail-seguro.com.br"
-          target="_blank"
-          class="web-link"
-        >
-          <img src="../img/locaweb.png" alt="Logo" class="logo" />
-        </a>
+      <div class="overlay"></div>
+      <nav class="menu-navegacao">
+        <button id="btnBurguer" onclick="clickMenu()" aria-label="Abrir Menu">
+          <i class="bx bx-menu"></i>
+        </button>
+      </nav>
+      <img
+        src="https://santacasademaceio.com.br/wp-content/uploads/2025/05/SANTA-CASA-DE-MISERIC%C3%93RDIA-DE-MACEI%C3%93-HORIZINTAL.png"
+        alt=""
+      />
+      <button id="themeToggle">🌙</button>
+
+      <div id="sidebar" class="sidebar">
+        <ul>
+          <li><a href="../index.html">Cancelamento Parcial</a></li>
+          <li>
+            <a href="./negativa-convenio.html">Negativa Convênio</a>
+          </li>
+          <li><a href="https://webmail-seguro.com.br/v2/">E-mail</a></li>
+          <li><a href="http://scmweb09/AnexarGuia">Anexa guia</a></li>
+        </ul>
       </div>
     </header>
-    <aside>
-      <a id="link" href="/index.html">CANCELAMENTO PARCIAL</a>
-
-      <a id="link" href="./negativa-convenio.html">NEGATIVA CONVÊNIO</a>
-    </aside>
-
     <main id="mainNegative">
       <form class="divergenciaForm2" id="">
-        <h2>PREENCHA OS CAMPOS ABAIXO</h2>
+        <h3>COMUNICADO DÉBITO</h3>
 
         <label for="nomeRemetente2">Nome do Remetente:</label>
         <input
@@ -54,7 +67,7 @@
 
         <label for="valorFaturado3">Valor Faturado:</label>
         <input
-          type="number"
+          type="text"
           placeholder="Valor Faturado"
           id="valorFaturado3"
           step="0.01"
@@ -62,7 +75,7 @@
 
         <label for="valorPago2">Valor Pago:</label>
         <input
-          type="number"
+          type="text"
           placeholder="Valor Pago"
           id="valorPago2"
           required
@@ -71,9 +84,10 @@
 
         <label for="motivoDebito">Motivo do Débito:</label>
         <select id="motivoDebito" required>
-          <option value="">Selecione um motivo</option>
-          <option value="Uso adicional de peças de patologia pelo médico">
-            Uso adicional de peças de patologia pelo médico
+          <option
+            value="Uso adicional de peças de patologia pelo médico patologista"
+          >
+            Uso adicional de peças de patologia pelo médico patologista
           </option>
           <option
             value="Quantidade de diárias maior que o previsto no orçamento"
@@ -81,15 +95,12 @@
             Quantidade de diárias maior que o previsto no orçamento
           </option>
           <option
-            value="Valor final da conta ficou maior que o orçamento (estimativa)"
+            value="Valor final da conta ficou maior que o orçamento de conta aberta (estimativa)"
           >
-            Valor final da conta ficou maior que o orçamento (estimativa)
+            Valor final da conta ficou maior que o orçamento de estiimativa
+            (conta aberta)
           </option>
-          <option value="Utilização de material OPME não previsto no orçamento">
-            Utilização de material OPME não previsto no orçamento
-          </option>
-          <option value="Outro">Outro</option>
-          <option value="Outros">Outros</option></select
+          <option value="Outro">Outro</option></select
         ><br />
 
         <label for="dataInicio">Data de Internação:</label>
@@ -112,8 +123,8 @@
           CRIAR MENSAGEM
         </button>
       </form>
-
       <div class="resultado" id="mensagemNegativa">
+        <h3>Mensagem para o E-mail</h3>
         <pre></pre>
         <button
           class="buttonCopy"
@@ -121,11 +132,7 @@
           id="btnCopiarTexto"
           onclick="copiarTextoConvenio()"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-              d="M20 11V5c0-1.103-.897-2-2-2h-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H4c-1.103 0-2 .897-2 2v13c0 1.103.897 2 2 2h7c0 1.103.897 2 2 2h7c1.103 0 2-.897 2-2v-7c0-1.103-.897-2-2-2zm-9 2v5H4V5h3v2h8V5h3v6h-5c-1.103 0-2 .897-2 2zm2 7v-7h7l.001 7H13z"
-            ></path>
-          </svg>
+          📝
         </button>
       </div>
     </main>

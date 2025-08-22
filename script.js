@@ -1,19 +1,80 @@
+const toggleBtn = document.getElementById("themeToggle");
+const body = document.body;
+
+toggleBtn.addEventListener("click", () => {
+  body.classList.toggle("light-mode");
+
+  // troca ícone
+  if (body.classList.contains("light-mode")) {
+    toggleBtn.textContent = "☀️";
+  } else {
+    toggleBtn.textContent = "🌙";
+  }
+});
+
+
+//Menu Lateral
+function sideMenu() {
+  formToggle.style.display = formToggle.style.display === 'block' ? 'none' : 'block';
+}
+const btnBurguer = document.querySelector('#btnBurguer');
+const sidebar = document.querySelector('.sidebar');
+const overlay = document.querySelector('.overlay');
+
+
+function toggleSidebar() {
+  const isSidebarOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isSidebarOpen);
+  overlay.classList.toggle('active', !isSidebarOpen);
+}
+
+btnBurguer.addEventListener('click', toggleSidebar);
+overlay.addEventListener('click', toggleSidebar);
+
+//Funções de formatação
 function formatarData(data) {
+  if (!data) return "";
   const [ano, mes, dia] = data.split('-');
   return `${dia}/${mes}/${ano}`;
 }
-// Função para criar a mensagem de estorno
+
+function formatarValor(valor) {
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+// Impedir letras nos campos de valor
+document.querySelectorAll("#valorFaturado, #valorPago, #valorFaturado2, #valorFaturado3, #valorPago2").forEach(input => {
+  input.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^0-9.,]/g, ""); // só números e vírgula/ponto
+  });
+
+  // formata ao sair do campo
+  input.addEventListener("blur", (e) => {
+    let valor = parseFloat(e.target.value.replace(",", "."));
+    if (!isNaN(valor)) {
+      e.target.value = formatarValor(valor);
+    }
+  });
+});
+
 // Função para criar a mensagem de estorno
 function criarMensagem() {
   // Captura os valores dos campos do formulário
   const nomePaciente = document.getElementById("nomePaciente").value;
   const codigoAtendimento = document.getElementById("codigoAtendimento").value;
-  const valorFaturado =
-    parseFloat(document.getElementById("valorFaturado").value) || 0;
-  const valorPago = parseFloat(document.getElementById("valorPago").value) || 0;
+  const valorFaturado = parseFloat(document.getElementById("valorFaturado").value.replace(/[R$\s.]/g, "").replace(",", ".")) || 0;
+  const valorPago = parseFloat(document.getElementById("valorPago").value.replace(/[R$\s.]/g, "").replace(",", ".")) || 0;
   const codigoCV = document.getElementById("codigoCV").value;
   const codigoCAP = document.getElementById("codigoCAP").value;
   const dataPagamento = document.getElementById("dataPagamento").value;
+
+  //função para obrigar a preecher
+  if (!nomePaciente || !nomePaciente || !codigoAtendimento || !valorFaturado || !valorPago || !codigoCV || !codigoCAP || !dataPagamento) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
 
   // Calcula o valor da devolução
   const valorDevolucao = valorPago - valorFaturado;
@@ -43,6 +104,7 @@ function criarMensagem() {
 
     Atenciosamente.
   `;
+  
 
   // Exibe a mensagem de estorno
   const resultadoDiv = document.getElementById("emailMensagem");
@@ -52,11 +114,10 @@ function criarMensagem() {
 
 // Função para criar a mensagem para o cliente
 function criarMensagemCliente() {
-  // Captura os valores dos campos do formulário
-  const nomePaciente = document.getElementById("nomePaciente").value;
-  const valorFaturado =
-    parseFloat(document.getElementById("valorFaturado").value) || 0;
-  const valorPago = parseFloat(document.getElementById("valorPago").value) || 0;
+const nomePaciente = document.getElementById("nomePaciente").value;
+  const valorFaturado = parseFloat(document.getElementById("valorFaturado").value.replace(/[R$\s.]/g, "").replace(",", ".")) || 0;
+  const valorPago = parseFloat(document.getElementById("valorPago").value.replace(/[R$\s.]/g, "").replace(",", ".")) || 0;
+
 
   // Calcula o valor da devolução
   const valorDevolucao = valorPago - valorFaturado;
@@ -94,7 +155,7 @@ function criarMensagemCliente() {
 // Função para copiar a mensagem para a área de transferência
 function copiarTexto() {
   const texto = document
-    .getElementById("resultado")
+    .getElementById("emailMensagem")
     .querySelector("pre").innerText;
 
   if (texto) {
@@ -107,7 +168,7 @@ function copiarTexto() {
     document.body.removeChild(tempInput);
 
     // Alerta informando que o texto foi copiado
-    alert("Texto copiado para a área de transferência!");
+    alert("Texto copiado para a área de transferência! 	VIVIANNE BARBOSA DE BRITO LIRA <vivianne.barbosa@santacasademaceio.com.br>, Leanderson de Oliveira Alves <leanderson.oliveira@santacasademaceio.com.br>, Carlin Samara <carlin.samara@santacasademaceio.com.br>, VANESSA THAYS AMANCIO DA SILVA - 13726 <vanessa.amancio@santacasademaceio.com.br>, - 13726 Gustavo Henrique Costa Silva <gustavo.henrique@santacasademaceio.com.br>, jailda.alves@santacasademaceio.com.br");
   } else {
     alert(
       "Nenhum texto para copiar. Por favor, clique em 'Criar Mensagem' primeiro."
@@ -137,21 +198,23 @@ function copiarTextoClient() {
   }
 }
 
+//*********************************************************************************************************** */
+
 // Função para criar a mensagem de estorno
 function criarMensagemNegativaConvenio() {
   // Captura os valores dos campos do formulário
   const nomeRemetente = document.getElementById("nomeRemetente").value;
   const nomePaciente2 = document.getElementById("nomePaciente2").value;
   const valorFaturado2 =
-    parseFloat(document.getElementById("valorFaturado2").value) || 0;
+    parseFloat(document.getElementById("valorFaturado2").value.replace(/[R$\s.]/g, "").replace(",", ".")) || 0;
   const nomeConvenio = document.getElementById("nomeConvenio").value;
   const motivo = document.getElementById("motivo").value;
   const dataInicio = document.getElementById("dataInicio").value;
   const dataFinal = document.getElementById("dataFinal").value;
 
-    // Formata as datas para o formato DD/MM/AAAA
-    const dataInicioFormatada = formatarData(dataInicio);
-    const dataFinalFormatada = formatarData(dataFinal);
+  // Formata as datas para o formato DD/MM/AAAA
+  const dataInicioFormatada = formatarData(dataInicio);
+  const dataFinalFormatada = formatarData(dataFinal);
   // Cria a mensagem formatada para o estorno
   const mensagemNegativa = `
 Olá! Me chamo ${nomeRemetente}, do setor de caixa da Santa Casa.
@@ -211,8 +274,8 @@ function criarMensagemNegativa() {
   // Captura os valores inseridos no formulário
   const nomeRemetente = document.getElementById('nomeRemetente2').value;
   const nomePaciente = document.getElementById('nomePaciente3').value;
-  const valorFaturado = document.getElementById('valorFaturado3').value;
-  const valorPago = document.getElementById('valorPago2').value;
+  const valorFaturado = document.getElementById('valorFaturado3').value.replace(/[R$\s.]/g, "").replace(",", ".") || 0;
+  const valorPago = document.getElementById('valorPago2').value.replace(/[R$\s.]/g, "").replace(",", ".") || 0;
   const motivoDebito = document.getElementById('motivoDebito').value;
   const dataInicio = document.getElementById('dataInicio').value;
   const dataFinal = document.getElementById('dataFinal').value;
@@ -243,7 +306,9 @@ function criarMensagemNegativa() {
   const mensagem = `
   Olá, sou ${nomeRemetente}, do setor de cobranças da Santa Casa.
 
-  Estamos entrando em contato para informar que o paciente ${nomePaciente}, que esteve internado de ${dataInicioFormatada} a ${dataFinalFormatada}, possui um saldo devedor no montante de R$ ${saldoDevedorFormatado}. 
+  Estamos entrando em contato para informar que o paciente ${nomePaciente}, que esteve
+  internado de ${dataInicioFormatada} a ${dataFinalFormatada}, possui um saldo devedor
+   no montante de R$ ${saldoDevedorFormatado}. 
   
   Motivo do Débito: ${motivoDebito}
 
@@ -264,20 +329,20 @@ function criarMensagemNegativa() {
 // Função para copiar a mensagem gerada para a área de transferência
 function copiarTextoConvenio() {
   const mensagemText = document.querySelector('#mensagemNegativa pre').textContent;
-  
+
   if (mensagemText) {
     // Cria um elemento temporário para copiar o texto
     const tempTextArea = document.createElement('textarea');
     tempTextArea.value = mensagemText;
     document.body.appendChild(tempTextArea);
-    
+
     // Seleciona e copia o texto
     tempTextArea.select();
     document.execCommand('copy');
-    
+
     // Remove o elemento temporário
     document.body.removeChild(tempTextArea);
-    
+
     alert('Texto copiado com sucesso!');
   } else {
     alert('Nenhuma mensagem gerada para copiar!');
